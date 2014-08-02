@@ -7,14 +7,14 @@ import java.nio.file.Path;
 
 import org.junit.Test;
 
-public class PayrollFileReaderTest {
+public class InputFileTest {
     private static final String TEST_FILES_FOLDER = "src/test/resources/";
     private static final String UNKNOWN_FILE = "unknown";
     private static final String KNOWN_FILE = "knownFile";
 
     @Test
     public void pathIsReturnedIfFound() {
-	PayrollFileReader reader = new PayrollFileReader(
+	InputFile reader = new InputFile(
 		getPathToTestFile(KNOWN_FILE));
 
 	Path path = reader.getPath();
@@ -24,7 +24,7 @@ public class PayrollFileReaderTest {
 
     @Test
     public void pathIsReturnedEvenIfNotFound() {
-	PayrollFileReader reader = new PayrollFileReader(
+	InputFile reader = new InputFile(
 		getPathToTestFile(UNKNOWN_FILE));
 
 	Path path = reader.getPath();
