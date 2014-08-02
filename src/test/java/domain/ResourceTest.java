@@ -1,12 +1,15 @@
-package input;
+package domain;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.rules.ExpectedException.none;
-
+import input.LineItems;
+import input.LineItemsBuilder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import domain.Resource;
 
 public class ResourceTest {
     private static final long SERIAL_NUMBER = 123L;

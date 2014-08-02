@@ -1,4 +1,6 @@
-package input;
+package domain;
+
+import input.LineItems;
 
 public class Resource {
 
