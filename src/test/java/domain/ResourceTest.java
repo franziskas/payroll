@@ -4,7 +4,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.rules.ExpectedException.none;
 import input.LineItems;
-import input.LineItemsBuilder;
+import input.builder.LineItemsBuilder;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

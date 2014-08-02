@@ -1,8 +1,8 @@
 package input;
 
-import static input.PathBuilder.KNOWN_FILE;
-import static input.PathBuilder.KNOWN_FILE_PATH;
-import static input.PathBuilder.PATH_TO_UNKNOWN_FILE;
+import static input.builder.TestFiles.KNOWN_FILE;
+import static input.builder.TestFiles.KNOWN_FILE_PATH;
+import static input.builder.TestFiles.UNKNOWN_FILE;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.rules.ExpectedException.none;
@@ -21,7 +21,7 @@ public class InputFileTest {
     public ExpectedException expectedException = none();
 
     private static final String ERROR_MESSAGE = "File not found at "
-	    + PATH_TO_UNKNOWN_FILE;
+	    + UNKNOWN_FILE;
 
     @Test
     public void givenKnownFileItProvidesAPath() {
@@ -34,7 +34,7 @@ public class InputFileTest {
 
     @Test
     public void givenUnknownFileItThrowsAnIllegalArgumentException() {
-	InputFile reader = new InputFile(PATH_TO_UNKNOWN_FILE);
+	InputFile reader = new InputFile(UNKNOWN_FILE);
 
 	expectedException.expect(IllegalArgumentException.class);
 	expectedException.expectMessage(ERROR_MESSAGE);

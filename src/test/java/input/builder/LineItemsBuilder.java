@@ -1,6 +1,7 @@
-package input;
+package input.builder;
 
 import static input.LineItems.SEPERATOR;
+import input.LineItems;
 
 public class LineItemsBuilder {
     private LineItems lineItems;
