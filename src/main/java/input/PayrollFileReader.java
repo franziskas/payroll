@@ -6,9 +6,13 @@ import java.nio.file.Path;
 
 public class PayrollFileReader {
 
-    public boolean fileExists(String filename) {
-	Path path = FileSystems.getDefault().getPath(
-		"src/test/resources/" + filename);
+    private final Path path;
+
+    public PayrollFileReader(String pathToFile) {
+	path = FileSystems.getDefault().getPath(pathToFile);
+    }
+
+    public boolean fileExists() {
 	return Files.exists(path);
     }
 
