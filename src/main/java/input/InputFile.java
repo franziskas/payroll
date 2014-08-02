@@ -1,6 +1,7 @@
 package input;
 
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class InputFile {
@@ -12,7 +13,10 @@ public class InputFile {
     }
 
     public Path getPath() {
-	return path;
-    }
+	if (Files.exists(path))
+	    return path;
 
+	throw new IllegalArgumentException("File not found at "
+		+ path.toString());
+    }
 }
