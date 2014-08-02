@@ -29,14 +29,14 @@ public class InputLinesTest {
 	InputLines lines = new InputLines(FILE_WITH_IO_EXCEPTION);
 
 	assertThat(lines.getLines(), is(LINES_WITH_ERROR));
-	assertThat(lines.getLines().get(0), is(FILE_NOT_FOUND));
+	assertThat(lines.getLines().get(0), is(new LineItems(FILE_NOT_FOUND)));
     }
 
     @Test
     public void givenAPathToAFileWithTwoLinesItReturnsAListOfThoseLines() {
 	InputLines lines = new InputLines(FILE_WITH_TWO_LINES);
 
-	assertThat(lines.getLines(), hasItems(FIRST_LINE, SECOND_LINE));
+	assertThat(lines.getLines(),
+		hasItems(new LineItems(FIRST_LINE), new LineItems(SECOND_LINE)));
     }
-
 }

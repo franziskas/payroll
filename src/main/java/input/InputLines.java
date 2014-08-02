@@ -8,19 +8,22 @@ import java.util.List;
 
 public class InputLines {
 
-    public static final List<String> LINES_WITH_ERROR = new ArrayList<>();
-    private List<String> lines;
+    public static final List<LineItems> LINES_WITH_ERROR = new ArrayList<>();
+    private List<LineItems> lines = new ArrayList<>();
 
     public InputLines(Path path) {
 	try {
-	    lines = Files.readAllLines(path);
+	    for (String line : Files.readAllLines(path)) {
+		lines.add(new LineItems(line));
+	    }
+
 	} catch (IOException e) {
 	    lines = LINES_WITH_ERROR;
-	    lines.add(e.getMessage());
+	    lines.add(new LineItems(e.getMessage()));
 	}
     }
 
-    public List<String> getLines() {
+    public List<LineItems> getLines() {
 	return lines;
     }
 }
