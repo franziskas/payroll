@@ -1,5 +1,9 @@
 package domain;
 
+import static input.builder.LineItemsBuilder.EMPLOYEE_TYPE;
+import static input.builder.LineItemsBuilder.FIRST_NAME;
+import static input.builder.LineItemsBuilder.LAST_NAME;
+import static input.builder.LineItemsBuilder.SERIAL_NUMBER;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -14,10 +18,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 public class ResourceTest {
-    private static final long SERIAL_NUMBER = 123L;
-    private static final String FIRST_NAME = "first";
-    private static final String LAST_NAME = "last";
-    private static final String EMPLOYEE_TYPE = "employeeType";
     private static final LineItems LINE_ITEMS_WITH_VALUES = new LineItemsBuilder()
 	    .create();
     private static final LineItems EMPTY_LINE_ITEMS = new LineItems("");

@@ -15,7 +15,8 @@ public class PayrollFilesWorker implements PayrollWorker {
     public void createPayroll() {
 	List<Resource> resources = resourcesFile.createResources();
 	for (Resource resource : resources) {
-	    new PayrollFile(resource).writeToFolder(directory);
+	    if (resource.getEmployeeType().equals("Employee"))
+		new PayrollFile(resource).writeToFolder(directory);
 	}
     }
 

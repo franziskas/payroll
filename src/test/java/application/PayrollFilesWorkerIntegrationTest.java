@@ -48,12 +48,15 @@ public class PayrollFilesWorkerIntegrationTest {
     private static final LineItems EXPECTED_FILE_CONTENT = new LineItemsBuilder()
 	    .asOutput().create();
     private static final LineItems EXPECTED_FILE_CONTENT2 = new LineItemsBuilder()
-	    .withOtherValues().asOutput().create();
+	    .withOtherEmployee().asOutput().create();
 
     private static final Resource FIRST_RESOURCE = new Resource(
 	    new LineItemsBuilder().create());
     private static final Resource SECOND_RESOURCE = new Resource(
-	    new LineItemsBuilder().withOtherValues().create());
+	    new LineItemsBuilder().withOtherEmployee().create());
+    private static final Resource MANAGER_RESOURCE = new Resource(
+
+    new LineItemsBuilder().withOtherValues().create());
 
     @Mock
     private InputFile workerMock;
@@ -79,7 +82,7 @@ public class PayrollFilesWorkerIntegrationTest {
     @Test
     public void givenFolderWithFileContainingTwoResourcesItGeneratesPayrollFiles() {
 	PayrollFilesWorker worker = setUpWorker(tempFolder,
-		asList(FIRST_RESOURCE, SECOND_RESOURCE));
+		asList(FIRST_RESOURCE, SECOND_RESOURCE, MANAGER_RESOURCE));
 
 	worker.createPayroll();
 
