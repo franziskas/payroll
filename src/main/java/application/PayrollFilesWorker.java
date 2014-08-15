@@ -20,15 +20,19 @@ public class PayrollFilesWorker implements PayrollWorker {
 	List<PayrollResource> resources = resourcesFile.createResources();
 	Timesheet timesheet = createTimesheet();
 	for (PayrollResource resource : resources) {
-	    if (resource.getEmployeeType().equals("Employee"))
-		new PayrollOutputFile(resource, timesheet)
-			.writeToFolder(directory);
+	    writeFileIfEmployee(timesheet, resource);
 	}
     }
 
+    private void writeFileIfEmployee(Timesheet timesheet,
+	    PayrollResource resource) {
+	if (resource.getEmployeeType().equals("Employee"))
+	new PayrollOutputFile(resource, timesheet)
+		.writeToFolder(directory);
+    }
+
     private Timesheet createTimesheet() {
-	List<WorkingHours> workingHours = hoursFile.createWorkingHours();
-	return new Timesheet(workingHours);
+	return new Timesheet(hoursFile.createWorkingHours());
     }
 
     public void setDirectory(String directory) {

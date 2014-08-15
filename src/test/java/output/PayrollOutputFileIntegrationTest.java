@@ -28,7 +28,7 @@ import domain.hours.Timesheet;
 import domain.resources.PayrollResource;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PayrollFileIntegrationTest {
+public class PayrollOutputFileIntegrationTest {
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 

@@ -3,12 +3,12 @@ package domain.hours;
 import static input.builder.LineItemsBuilder.OTHER_SERIAL_NUMBER;
 import static input.builder.LineItemsBuilder.REGULAR_HOURS;
 import static input.builder.LineItemsBuilder.SERIAL_NUMBER;
+import static input.builder.LineItemsForOutputBuilder.STANDARD_OUTPUT;
 import static input.builder.LineItemsForWorkingHoursBuilder.OVERTIME;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import input.builder.LineItemsBuilder;
 import input.builder.LineItemsForWorkingHoursBuilder;
 
 import java.util.List;
@@ -40,7 +40,7 @@ public class TimesheetTest {
 
 	assertThat(timesheet.getRegularHoursFor(SERIAL_NUMBER), is(0));
 	assertThat(timesheet.getRegularHoursFor(OTHER_SERIAL_NUMBER),
-		is(LineItemsBuilder.REGULAR_HOURS));
+		is(REGULAR_HOURS));
     }
 
     @Test
@@ -59,5 +59,11 @@ public class TimesheetTest {
 	assertThat(timesheet.getRegularHoursFor(SERIAL_NUMBER),
 		is(REGULAR_HOURS));
 	assertThat(timesheet.getOvertimeHoursFor(SERIAL_NUMBER), is(OVERTIME));
+    }
+
+    @Test
+    public void givenWorkingHoursItPrintsThemToOutputString() {
+	Timesheet timesheet = new Timesheet(asList(WORKING_HOURS));
+	assertThat(timesheet.getOutput(SERIAL_NUMBER), is(STANDARD_OUTPUT));
     }
 }

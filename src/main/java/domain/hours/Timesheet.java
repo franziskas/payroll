@@ -9,10 +9,13 @@ import java.util.Map;
 import java.util.function.ToIntFunction;
 
 public class Timesheet {
-    private static final String PAYROLL_TEMPLATE = " ordinary hours worked: {0} * {1} = {2}";
+    private static final String PAYROLL_TEMPLATE = " ordinary hours worked: {0} * {1} = {2} hours overtime worked: {3} * {4} = {5} Total: {6}";
+    private static final int HOURLY_RATE = 10;
+    private static final int OVERTIME_RATE = 15;
     private static final String CURRENCY = " Euro";
-    private static final String HOURLY_WAGE = "10" + CURRENCY;
-
+    private static final String HOURLY_WAGE = HOURLY_RATE + CURRENCY;
+    private static final String OVERTIME_RENUMERATION = OVERTIME_RATE
+	    + CURRENCY;
     private Map<Long, Integer> regularHoursPerSerialNumber;
     private Map<Long, Integer> overtimeHoursPerSerialNumber;
 
@@ -44,17 +47,31 @@ public class Timesheet {
 	return hours;
     }
 
-    public String getOutput(long serialNumber) {
-	int hours = getRegularHoursFor(serialNumber);
-	return format(PAYROLL_TEMPLATE, hours, HOURLY_WAGE,
-		getTotalStandardPay(hours));
-    }
-
-    private static String getTotalStandardPay(int hours) {
-	return hours * 10 + CURRENCY;
-    }
-
     public int getOvertimeHoursFor(long serialNumber) {
 	return getHours(serialNumber, overtimeHoursPerSerialNumber);
     }
+
+    public String getOutput(long serialNumber) {
+	int regularHours = getRegularHoursFor(serialNumber);
+	int overtimeHours = getOvertimeHoursFor(serialNumber);
+
+	return format(PAYROLL_TEMPLATE, regularHours, HOURLY_WAGE,
+		getTotalStandardPay(regularHours), overtimeHours,
+		OVERTIME_RENUMERATION, getTotalOvertimePay(overtimeHours),
+		getTotalPay(regularHours, overtimeHours));
+    }
+
+    private static String getTotalStandardPay(int hours) {
+	return hours * HOURLY_RATE + CURRENCY;
+    }
+
+    private static String getTotalOvertimePay(int overtimeHours) {
+	return overtimeHours * OVERTIME_RATE + CURRENCY;
+    }
+
+    private static String getTotalPay(int regularHours, int overtimeHours) {
+	return (regularHours * HOURLY_RATE + overtimeHours * OVERTIME_RATE)
+		+ CURRENCY;
+    }
+
 }
