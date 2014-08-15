@@ -9,8 +9,9 @@ import util.ValueObject;
 import domain.Resource;
 
 public class LineItems extends ValueObject {
+    public static final String INPUT_SEPERATOR = ",";
+    public static final String OUTPUT_SEPERATOR = " | ";
 
-    public static final String SEPERATOR = ",";
     private List<String> items;
 
     public LineItems(String line) {
@@ -23,7 +24,7 @@ public class LineItems extends ValueObject {
 
     private List<String> readItems(String line) {
 	if (line.length() > 0)
-	    return asList(line.split(SEPERATOR));
+	    return asList(line.split(INPUT_SEPERATOR));
 	return emptyList();
     }
 
@@ -45,7 +46,7 @@ public class LineItems extends ValueObject {
 	String itemsAsString = "";
 	for (String item : items) {
 	    itemsAsString += item;
-	    itemsAsString += " | ";
+	    itemsAsString += OUTPUT_SEPERATOR;
 	}
 	return itemsAsString.substring(0, itemsAsString.length() - 3);
     }

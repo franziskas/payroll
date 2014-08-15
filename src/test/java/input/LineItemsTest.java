@@ -1,6 +1,6 @@
 package input;
 
-import static input.LineItems.SEPERATOR;
+import static input.LineItems.INPUT_SEPERATOR;
 import static input.builder.LineItemsBuilder.EMPLOYEE_TYPE;
 import static input.builder.LineItemsBuilder.FIRST_NAME;
 import static input.builder.LineItemsBuilder.LAST_NAME;
@@ -71,7 +71,7 @@ public class LineItemsTest {
 
     @Test
     public void givenOneItemValidationOfOneValueSucceeds() {
-	LineItems items = new LineItems("item" + SEPERATOR);
+	LineItems items = new LineItems("item" + INPUT_SEPERATOR);
 
 	items.validate(1);
     }

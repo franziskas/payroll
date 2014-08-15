@@ -25,8 +25,8 @@ public class PayrollFileIntegrationTest {
 	    .create();
     private static final String EXPECTED_FILENAME = format("{0}-{1}.txt",
 	    LAST_NAME, FIRST_NAME);
-    private static final LineItems EXPECTED_FILE_CONTENT = new LineItemsBuilder(
-	    " | ").create();
+    private static final LineItems EXPECTED_FILE_CONTENT = new LineItemsBuilder()
+	    .withSeperator(" | ").create();
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 

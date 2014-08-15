@@ -19,7 +19,7 @@ public class ResourcesFileTest {
     public TemporaryFolder folder = new TemporaryFolder();
 
     private static final Resource SECOND_RESOURCE = new Resource(
-	    new LineItemsBuilder().createSecondInstance());
+	    new LineItemsBuilder().withOtherValues().create());
     private static final Resource FIRST_RESOURCE = new Resource(
 	    new LineItemsBuilder().create());
 
@@ -28,14 +28,14 @@ public class ResourcesFileTest {
 	    throws IOException {
 	folder.newFile("resources.txt");
 
-	List<Resource> resources = new ResourcesFile(getTempFolderPath()).createResources();
+	List<Resource> resources = new ResourcesFile(getTempFolderPath())
+		.createResources();
 
 	assertThat(resources, is(empty()));
     }
 
     private String getTempFolderPath() {
-	return folder.getRoot()
-		.getAbsolutePath() + "\\";
+	return folder.getRoot().getAbsolutePath() + "\\";
     }
 
     @Test

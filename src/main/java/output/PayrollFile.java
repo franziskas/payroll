@@ -13,6 +13,8 @@ import domain.Resource;
 
 public class PayrollFile {
 
+    public static final String FILENAME_TEMPLATE = "{0}-{1}.txt";
+
     private Resource resource;
 
     public PayrollFile(Resource resource) {
@@ -42,7 +44,7 @@ public class PayrollFile {
     }
 
     private String getFileName(String destinationFolder) {
-	return destinationFolder.concat(format("{0}-{1}.txt",
+	return destinationFolder.concat(format(FILENAME_TEMPLATE,
 		resource.getLastName(), resource.getFirstName()));
     }
 }
