@@ -1,9 +1,9 @@
 package application;
 
-import static input.builder.LineItemsBuilder.FIRST_NAME;
-import static input.builder.LineItemsBuilder.FIRST_NAME2;
-import static input.builder.LineItemsBuilder.LAST_NAME;
-import static input.builder.LineItemsBuilder.LAST_NAME2;
+import static input.builder.LineItemsForResourceBuilder.FIRST_NAME;
+import static input.builder.LineItemsForResourceBuilder.FIRST_NAME2;
+import static input.builder.LineItemsForResourceBuilder.LAST_NAME;
+import static input.builder.LineItemsForResourceBuilder.LAST_NAME2;
 import static java.text.MessageFormat.format;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
@@ -17,7 +17,7 @@ import static output.PayrollFile.FILENAME_TEMPLATE;
 import input.InputFile;
 import input.InputLines;
 import input.LineItems;
-import input.builder.LineItemsBuilder;
+import input.builder.LineItemsForResourceBuilder;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,18 +45,18 @@ public class PayrollFilesWorkerIntegrationTest {
     private static final String EXPECTED_FILENAME2 = format(FILENAME_TEMPLATE,
 	    LAST_NAME2, FIRST_NAME2);
 
-    private static final LineItems EXPECTED_FILE_CONTENT = new LineItemsBuilder()
+    private static final LineItems EXPECTED_FILE_CONTENT = new LineItemsForResourceBuilder()
 	    .asOutput().create();
-    private static final LineItems EXPECTED_FILE_CONTENT2 = new LineItemsBuilder()
+    private static final LineItems EXPECTED_FILE_CONTENT2 = new LineItemsForResourceBuilder()
 	    .withOtherEmployee().asOutput().create();
 
     private static final PayrollResource FIRST_RESOURCE = new PayrollResource(
-	    new LineItemsBuilder().create());
+	    new LineItemsForResourceBuilder().create());
     private static final PayrollResource SECOND_RESOURCE = new PayrollResource(
-	    new LineItemsBuilder().withOtherEmployee().create());
+	    new LineItemsForResourceBuilder().withOtherEmployee().create());
     private static final PayrollResource MANAGER_RESOURCE = new PayrollResource(
 
-    new LineItemsBuilder().withOtherValues().create());
+    new LineItemsForResourceBuilder().withOtherValues().create());
 
     @Mock
     private InputFile workerMock;

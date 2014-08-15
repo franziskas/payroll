@@ -1,14 +1,14 @@
 package output;
 
-import static input.builder.LineItemsBuilder.FIRST_NAME;
-import static input.builder.LineItemsBuilder.LAST_NAME;
+import static input.builder.LineItemsForResourceBuilder.FIRST_NAME;
+import static input.builder.LineItemsForResourceBuilder.LAST_NAME;
 import static java.text.MessageFormat.format;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.junit.Assert.assertThat;
 import input.InputFile;
 import input.InputLines;
 import input.LineItems;
-import input.builder.LineItemsBuilder;
+import input.builder.LineItemsForResourceBuilder;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,11 +21,11 @@ import domain.resources.PayrollResource;
 
 public class PayrollFileIntegrationTest {
 
-    private static final LineItems LINE_ITEMS_WITH_VALUES = new LineItemsBuilder()
+    private static final LineItems LINE_ITEMS_WITH_VALUES = new LineItemsForResourceBuilder()
 	    .create();
     private static final String EXPECTED_FILENAME = format("{0}-{1}.txt",
 	    LAST_NAME, FIRST_NAME);
-    private static final LineItems EXPECTED_FILE_CONTENT = new LineItemsBuilder()
+    private static final LineItems EXPECTED_FILE_CONTENT = new LineItemsForResourceBuilder()
 	    .asOutput().create();
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();

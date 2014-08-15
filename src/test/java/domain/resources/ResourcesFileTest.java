@@ -5,7 +5,7 @@ import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.junit.Assert.assertThat;
-import input.builder.LineItemsBuilder;
+import input.builder.LineItemsForResourceBuilder;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,9 +19,9 @@ public class ResourcesFileTest {
     public TemporaryFolder folder = new TemporaryFolder();
 
     private static final PayrollResource SECOND_RESOURCE = new PayrollResource(
-	    new LineItemsBuilder().withOtherValues().create());
+	    new LineItemsForResourceBuilder().withOtherValues().create());
     private static final PayrollResource FIRST_RESOURCE = new PayrollResource(
-	    new LineItemsBuilder().create());
+	    new LineItemsForResourceBuilder().create());
 
     @Test
     public void givenADirectoryNameWithEmptyResourceFileItReturnsEmptyResourceList()

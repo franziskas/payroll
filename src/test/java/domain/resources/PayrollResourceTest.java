@@ -1,15 +1,15 @@
 package domain.resources;
 
-import static input.builder.LineItemsBuilder.EMPLOYEE_TYPE;
-import static input.builder.LineItemsBuilder.FIRST_NAME;
-import static input.builder.LineItemsBuilder.LAST_NAME;
-import static input.builder.LineItemsBuilder.SERIAL_NUMBER;
+import static input.builder.LineItemsForResourceBuilder.EMPLOYEE_TYPE;
+import static input.builder.LineItemsForResourceBuilder.FIRST_NAME;
+import static input.builder.LineItemsForResourceBuilder.LAST_NAME;
+import static input.builder.LineItemsForResourceBuilder.SERIAL_NUMBER;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.rules.ExpectedException.none;
 import input.LineItems;
-import input.builder.LineItemsBuilder;
+import input.builder.LineItemsForResourceBuilder;
 
 import java.util.List;
 
@@ -18,11 +18,12 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 public class PayrollResourceTest {
-    private static final LineItems LINE_ITEMS_WITH_VALUES = new LineItemsBuilder()
-	    .create();
-    private static final LineItems EMPTY_LINE_ITEMS = new LineItems("");
     @Rule
     public ExpectedException expectedException = none();
+
+    private static final LineItems LINE_ITEMS_WITH_VALUES = new LineItemsForResourceBuilder()
+	    .create();
+    private static final LineItems EMPTY_LINE_ITEMS = new LineItems("");
 
     @Test
     public void givenWrongNumberOfLineItemsItThrowsAnIllegalArgumentException() {
