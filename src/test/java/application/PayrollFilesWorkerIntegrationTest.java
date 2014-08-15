@@ -7,7 +7,10 @@ import static input.builder.LineItemsBuilder.LAST_NAME;
 import static input.builder.LineItemsBuilder.LAST_NAME2;
 import static java.text.MessageFormat.format;
 import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.collection.IsArrayWithSize.arrayWithSize;
+import static org.hamcrest.collection.IsArrayWithSize.emptyArray;
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
@@ -19,9 +22,9 @@ import input.builder.LineItemsBuilder;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -56,21 +59,34 @@ public class PayrollFilesWorkerIntegrationTest {
     @Mock
     private ResourcesFile resourcesMock;
 
+    private File tempFolder;
+
+    @Before
+    public void setUp() throws IOException {
+	tempFolder = folder.newFolder();
+    }
+
     @Test
-    public void givenUserInputItReadsAResourceFileAndGeneratesPayrollFiles()
-	    throws IOException {
-	File tempFolder = folder.newFolder();
-	PayrollFilesWorker worker = setUpWorker(tempFolder);
+    public void givenFolderWithEmptyResourceFileItGeneratesNoPayrollFiles() {
+	PayrollFilesWorker worker = setUpWorker(tempFolder, emptyList());
+
+	worker.createPayroll();
+
+	assertThat(tempFolder.listFiles(), is(emptyArray()));
+    }
+
+    @Test
+    public void givenFolderWithFileContainingTwoResourcesItGeneratesPayrollFiles() {
+	PayrollFilesWorker worker = setUpWorker(tempFolder,
+		asList(FIRST_RESOURCE, SECOND_RESOURCE));
 
 	worker.createPayroll();
 
 	File[] files = tempFolder.listFiles();
 	assertThat(files, arrayWithSize(2));
 
-	List<String> fileNames = asList(files[0].getName(),
-		files[1].getName());
-	assertThat(fileNames,
-		hasItems(EXPECTED_FILENAME, EXPECTED_FILENAME2));
+	List<String> fileNames = asList(files[0].getName(), files[1].getName());
+	assertThat(fileNames, hasItems(EXPECTED_FILENAME, EXPECTED_FILENAME2));
 
 	List<LineItems> fileContents = asList(getFirstLineOf(files[0]),
 		getFirstLineOf(files[1]));
@@ -83,12 +99,14 @@ public class PayrollFilesWorkerIntegrationTest {
 		.get(0);
     }
 
-    private PayrollFilesWorker setUpWorker(File tempFolder) {
+    private PayrollFilesWorker setUpWorker(File tempFolder,
+	    List<Resource> resources) {
 	PayrollFilesWorker worker = new PayrollFilesWorker();
 	worker.setDirectory(tempFolder.getAbsolutePath() + "\\");
+
 	worker.setResourceFile(resourcesMock);
-	when(resourcesMock.createResources()).thenReturn(
-		Arrays.asList(FIRST_RESOURCE, SECOND_RESOURCE));
+	when(resourcesMock.createResources()).thenReturn(resources);
+
 	return worker;
     }
 }
