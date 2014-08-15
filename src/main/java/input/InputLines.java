@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputLines {
+import util.ValueObject;
+
+public class InputLines extends ValueObject {
 
     public static final List<LineItems> LINES_WITH_ERROR = new ArrayList<>();
     private List<LineItems> lines = new ArrayList<>();

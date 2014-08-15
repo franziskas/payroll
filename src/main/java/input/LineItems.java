@@ -5,8 +5,8 @@ import static java.util.Collections.emptyList;
 
 import java.util.List;
 
+import util.ValueObject;
 import domain.Resource;
-import domain.ValueObject;
 
 public class LineItems extends ValueObject {
 

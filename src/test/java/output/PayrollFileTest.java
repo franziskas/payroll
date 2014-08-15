@@ -32,16 +32,15 @@ public class PayrollFileTest {
 
     @Test
     public void givenAResourceContentsAreWrittenToFile() throws IOException {
-	File destinationFolder = folder.newFolder();
+	File destinationFolder = folder.newFolder("test");
 	Resource resource = new Resource(LINE_ITEMS_WITH_VALUES);
 
 	PayrollFile payrollFile = new PayrollFile(resource);
-	payrollFile.writeToFolder(destinationFolder);
+	payrollFile.writeToFolder(destinationFolder.getAbsolutePath());
 
 	String desiredFilepath = destinationFolder.getPath()
 		+ EXPECTED_FILENAME;
-	InputFile file = new InputFile(desiredFilepath);
-	InputLines lines = new InputLines(file);
+	InputLines lines = new InputLines(new InputFile(desiredFilepath));
 
 	assertThat(lines.getLines(), hasItem(EXPECTED_FILE_CONTENT));
 

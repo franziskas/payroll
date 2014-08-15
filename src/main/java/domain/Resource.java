@@ -5,6 +5,8 @@ import input.LineItems;
 import java.util.Arrays;
 import java.util.List;
 
+import util.ValueObject;
+
 public class Resource extends ValueObject {
 
     private long serialNumber;

@@ -3,7 +3,6 @@ package output;
 import static java.text.MessageFormat.format;
 import input.LineItems;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -20,7 +19,7 @@ public class PayrollFile {
 	this.resource = resource;
     }
 
-    public void writeToFolder(File destinationFolder) {
+    public void writeToFolder(String destinationFolder) {
 	Path file = getFilePath(destinationFolder);
 	try {
 	    Files.createFile(file);
@@ -38,13 +37,12 @@ public class PayrollFile {
 	return new LineItems(resource).getOutput();
     }
 
-    private Path getFilePath(File destinationFolder) {
+    private Path getFilePath(String destinationFolder) {
 	return FileSystems.getDefault().getPath(getFileName(destinationFolder));
     }
 
-    private String getFileName(File destinationFolder) {
-	return destinationFolder.getPath().concat(
-		format("{0}-{1}.txt", resource.getLastName(),
-			resource.getFirstName()));
+    private String getFileName(String destinationFolder) {
+	return destinationFolder.concat(format("{0}-{1}.txt",
+		resource.getLastName(), resource.getFirstName()));
     }
 }

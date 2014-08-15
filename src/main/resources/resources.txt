@@ -1,0 +1,26 @@
+1234,Francesco,Campanelli,Manager
+1235,Nicola,Vari, Employee
+1236,Ferdinando,Piva,Employee
+1237,Sabina,Ruzzato,Manager
+1238,Loris,Jimma,Employee
+1239,Alberto,Nicoletti,Employee
+1240,Sandra,Satti,Employee
+1241,Roberto,Savi,Employee
+1242,Roberto,Giudici,Manager
+1243,Paolo,Livi,Employee
+1244,Nicola,Piva,Consultant
+1245,Linda,Santi,Employee
+1246,Fabrizio,Carli,Consultant
+1247,Alessandra,Prionti,Employee
+1248,Giovanni,Badu,Employee
+1249,Giovanni,Cerelli,Employee
+1250,Giovanni,Santini,Employee
+1251,Daniela,Ladu,Employee
+1252,Amelia,Cecala,Employee
+1253,Arnoldo,Ceci,Employee
+1254,Luca,Giannini,Employee
+1255,Stefano,Giannini,Employee
+1256,Aldo,Silvestrini,Employee
+1257,Rodolfo,Giannessi,Employee
+1258,Giovanni,Gianni,Employee
+1260,Sabina,Ruzzato,Consultant
