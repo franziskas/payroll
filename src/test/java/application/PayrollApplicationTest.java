@@ -16,7 +16,7 @@ public class PayrollApplicationTest {
     private PayrollWorker workerMock;
 
     @Test
-    public void givenAFileWithResourcesItCreatesPayrollFiles() {
+    public void givenNoArgumentsItStartsCreatingThePayroll() {
 	PayrollApplication.setPayrollWorker(workerMock);
 	PayrollApplication.main(NO_ARGUMENTS);
 

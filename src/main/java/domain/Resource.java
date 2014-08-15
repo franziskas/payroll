@@ -5,7 +5,7 @@ import input.LineItems;
 import java.util.Arrays;
 import java.util.List;
 
-public class Resource {
+public class Resource extends ValueObject {
 
     private long serialNumber;
     private String firstName;
@@ -38,7 +38,7 @@ public class Resource {
     }
 
     public List<String> getItemsAsList() {
-	return Arrays.asList(Long.toString(serialNumber),
-		firstName, lastName, employeeType);
+	return Arrays.asList(Long.toString(serialNumber), firstName, lastName,
+		employeeType);
     }
 }

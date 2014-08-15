@@ -8,6 +8,10 @@ public class LineItemsBuilder {
     public static final String FIRST_NAME = "first";
     public static final String LAST_NAME = "last";
     public static final String EMPLOYEE_TYPE = "employeeType";
+    private static final long SERIAL_NUMBER2 = 1234L;
+    private static final String FIRST_NAME2 = "first2";
+    private static final String LAST_NAME2 = "last2";
+    private static final String EMPLOYEE_TYPE2 = "employeeType2";
 
     private LineItems lineItems;
 
@@ -35,4 +39,8 @@ public class LineItemsBuilder {
 	return lineItems;
     }
 
+    public LineItems createSecondInstance() {
+	return new LineItemsBuilder(SEPERATOR, SERIAL_NUMBER2, FIRST_NAME2,
+		LAST_NAME2, EMPLOYEE_TYPE2).create();
+    }
 }
