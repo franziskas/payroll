@@ -4,8 +4,11 @@ import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
+import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 import java.util.List;
+
+import domain.Resource;
 
 public class LineItems {
 
@@ -14,6 +17,10 @@ public class LineItems {
 
     public LineItems(String line) {
 	items = readItems(line);
+    }
+
+    public LineItems(Resource resource) {
+	items = resource.getItemsAsList();
     }
 
     private List<String> readItems(String line) {
@@ -26,6 +33,25 @@ public class LineItems {
 	return items;
     }
 
+    public void validate(int numberOfValuesExpected) {
+	if (items.size() < numberOfValuesExpected)
+	    throw new IllegalArgumentException("Input does not have "
+		    + numberOfValuesExpected + " values: " + items);
+    }
+
+    public String getValue(int index) {
+	return items.get(index);
+    }
+
+    public String getOutput() {
+	String itemsAsString = "";
+	for (String item : items) {
+	    itemsAsString += item;
+	    itemsAsString += " | ";
+	}
+	return itemsAsString.substring(0, itemsAsString.length() - 3);
+    }
+
     @Override
     public int hashCode() {
 	return reflectionHashCode(this);
@@ -36,13 +62,8 @@ public class LineItems {
 	return reflectionEquals(this, obj);
     }
 
-    public void validate(int numberOfValuesExpected) {
-	if (items.size() < numberOfValuesExpected)
-	    throw new IllegalArgumentException("Input does not have "
-		    + numberOfValuesExpected + " values: " + items);
-    }
-
-    public String getValue(int index) {
-	return items.get(index);
+    @Override
+    public String toString() {
+	return reflectionToString(this);
     }
 }

@@ -6,19 +6,20 @@ import static org.junit.rules.ExpectedException.none;
 import input.LineItems;
 import input.builder.LineItemsBuilder;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import domain.Resource;
 
 public class ResourceTest {
     private static final long SERIAL_NUMBER = 123L;
     private static final String FIRST_NAME = "first";
     private static final String LAST_NAME = "last";
     private static final String EMPLOYEE_TYPE = "employeeType";
-    private static final LineItems LINE_ITEMS_WITH_VALUES = new LineItemsBuilder(
-	    SERIAL_NUMBER, FIRST_NAME, LAST_NAME, EMPLOYEE_TYPE).create();
+    private static final LineItems LINE_ITEMS_WITH_VALUES = new LineItemsBuilder()
+	    .create();
     private static final LineItems EMPTY_LINE_ITEMS = new LineItems("");
     @Rule
     public ExpectedException expectedException = none();
@@ -40,6 +41,16 @@ public class ResourceTest {
 	assertThat(resource.getFirstName(), is(FIRST_NAME));
 	assertThat(resource.getLastName(), is(LAST_NAME));
 	assertThat(resource.getEmployeeType(), is(EMPLOYEE_TYPE));
+    }
+
+    @Test
+    public void givenLineItemsItReturnsThemAsAListOfStrings() {
+	Resource resource = new Resource(LINE_ITEMS_WITH_VALUES);
+	List<String> expectedValues = Arrays.asList(
+		Long.toString(SERIAL_NUMBER), FIRST_NAME, LAST_NAME,
+		EMPLOYEE_TYPE);
+
+	assertThat(resource.getItemsAsList(), is(expectedValues));
     }
 
 }

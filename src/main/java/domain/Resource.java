@@ -2,6 +2,9 @@ package domain;
 
 import input.LineItems;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Resource {
 
     private long serialNumber;
@@ -32,5 +35,10 @@ public class Resource {
 
     public String getEmployeeType() {
 	return employeeType;
+    }
+
+    public List<String> getItemsAsList() {
+	return Arrays.asList(Long.toString(serialNumber),
+		firstName, lastName, employeeType);
     }
 }
