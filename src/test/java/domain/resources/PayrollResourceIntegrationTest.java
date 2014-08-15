@@ -1,14 +1,16 @@
 package domain.resources;
 
+import static domain.resources.PayrollResource.OUTPUT_SEPERATOR;
+import static input.builder.LineItemsBuilder.FIRST_NAME;
+import static input.builder.LineItemsBuilder.LAST_NAME;
+import static input.builder.LineItemsBuilder.SERIAL_NUMBER;
 import static input.builder.LineItemsForResourceBuilder.EMPLOYEE_TYPE;
-import static input.builder.LineItemsForResourceBuilder.FIRST_NAME;
-import static input.builder.LineItemsForResourceBuilder.LAST_NAME;
-import static input.builder.LineItemsForResourceBuilder.SERIAL_NUMBER;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.rules.ExpectedException.none;
 import input.LineItems;
+import input.builder.LineItemsBuilder;
 import input.builder.LineItemsForResourceBuilder;
 
 import java.util.List;
@@ -39,8 +41,8 @@ public class PayrollResourceIntegrationTest {
 	PayrollResource resource = new PayrollResource(LINE_ITEMS_WITH_VALUES);
 
 	assertThat(resource.getSerialNumber(), is(SERIAL_NUMBER));
-	assertThat(resource.getFirstName(), is(FIRST_NAME));
-	assertThat(resource.getLastName(), is(LAST_NAME));
+	assertThat(resource.getFirstName(), is(LineItemsBuilder.FIRST_NAME));
+	assertThat(resource.getLastName(), is(LineItemsBuilder.LAST_NAME));
 	assertThat(resource.getEmployeeType(), is(EMPLOYEE_TYPE));
     }
 
@@ -49,9 +51,21 @@ public class PayrollResourceIntegrationTest {
 	PayrollResource resource = new PayrollResource(LINE_ITEMS_WITH_VALUES);
 
 	List<String> expectedValues = asList(Long.toString(SERIAL_NUMBER),
-		LAST_NAME, FIRST_NAME, EMPLOYEE_TYPE);
+		LineItemsBuilder.LAST_NAME, LineItemsBuilder.FIRST_NAME,
+		EMPLOYEE_TYPE);
 
 	assertThat(resource.getItemsAsList(), is(expectedValues));
+    }
+
+    @Test
+    public void givenALineItemItCanProvideTheContentsAsOneOutputString() {
+	PayrollResource items = new PayrollResource(
+		new LineItemsForResourceBuilder().create());
+
+	String expectedOutput = SERIAL_NUMBER + OUTPUT_SEPERATOR + LAST_NAME
+		+ OUTPUT_SEPERATOR + FIRST_NAME;
+
+	assertThat(expectedOutput, is(items.getOutput()));
     }
 
 }

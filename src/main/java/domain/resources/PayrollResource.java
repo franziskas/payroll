@@ -13,6 +13,7 @@ public class PayrollResource extends ValueObject {
     private String firstName;
     private String employeeType;
     private String lastName;
+    public static final String OUTPUT_SEPERATOR = " | ";
 
     public PayrollResource(LineItems lineItems) {
 	lineItems.validate(4);
@@ -42,5 +43,17 @@ public class PayrollResource extends ValueObject {
     public List<String> getItemsAsList() {
 	return asList(Long.toString(serialNumber), lastName, firstName,
 		employeeType);
+    }
+
+    public String getOutput() {
+	String resourceAsString = "";
+
+	resourceAsString += serialNumber;
+	resourceAsString += OUTPUT_SEPERATOR;
+	resourceAsString += lastName;
+	resourceAsString += OUTPUT_SEPERATOR;
+	resourceAsString += firstName;
+
+	return resourceAsString;
     }
 }

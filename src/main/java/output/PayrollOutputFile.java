@@ -1,7 +1,6 @@
 package output;
 
 import static java.text.MessageFormat.format;
-import input.LineItems;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,16 +8,19 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import domain.hours.Timesheet;
 import domain.resources.PayrollResource;
 
 public class PayrollOutputFile {
-
     public static final String FILENAME_TEMPLATE = "{0}-{1}.txt";
 
     private PayrollResource resource;
 
-    public PayrollOutputFile(PayrollResource resource) {
+    private Timesheet timesheet;
+
+    public PayrollOutputFile(PayrollResource resource, Timesheet timesheet) {
 	this.resource = resource;
+	this.timesheet = timesheet;
     }
 
     public void writeToFolder(String destinationFolder) {
@@ -27,16 +29,17 @@ public class PayrollOutputFile {
 	    Files.createFile(file);
 	    FileWriter fileWriter = new FileWriter(
 		    getFileName(destinationFolder));
-	    fileWriter.write(getContents());
+	    fileWriter.write(getOutput());
 	    fileWriter.close();
-	} catch (IOException e) {
-	    throw new RuntimeException(e);
+	} catch (IOException exception) {
+	    throw new RuntimeException(exception);
 	}
 
     }
 
-    private String getContents() {
-	return new LineItems(resource).getOutput();
+    private String getOutput() {
+	return resource.getOutput()
+		+ timesheet.getOutput(resource.getSerialNumber());
     }
 
     private Path getFilePath(String destinationFolder) {

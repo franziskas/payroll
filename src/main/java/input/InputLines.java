@@ -9,8 +9,8 @@ import java.util.List;
 import util.ValueObject;
 
 public class InputLines extends ValueObject {
-
     public static final List<LineItems> LINES_WITH_ERROR = new ArrayList<>();
+
     private List<LineItems> lines = new ArrayList<>();
 
     public InputLines(InputFile file) {

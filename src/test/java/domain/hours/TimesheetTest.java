@@ -2,11 +2,11 @@ package domain.hours;
 
 import static input.builder.LineItemsBuilder.OTHER_SERIAL_NUMBER;
 import static input.builder.LineItemsBuilder.SERIAL_NUMBER;
-import static input.builder.LineItemsForWorkingHoursBuilder.HOURS;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import input.builder.LineItemsBuilder;
 import input.builder.LineItemsForWorkingHoursBuilder;
 
 import java.util.List;
@@ -35,7 +35,8 @@ public class TimesheetTest {
 		asList(WORKING_HOURS_DIFFERENT_EMPLOYEE));
 
 	assertThat(timesheet.getHoursFor(SERIAL_NUMBER), is(0));
-	assertThat(timesheet.getHoursFor(OTHER_SERIAL_NUMBER), is(HOURS));
+	assertThat(timesheet.getHoursFor(OTHER_SERIAL_NUMBER),
+		is(LineItemsBuilder.HOURS));
     }
 
     @Test
@@ -43,6 +44,7 @@ public class TimesheetTest {
 	Timesheet timesheet = new Timesheet(asList(WORKING_HOURS,
 		WORKING_HOURS_DIFFERENT_DAY));
 
-	assertThat(timesheet.getHoursFor(SERIAL_NUMBER), is(HOURS * 2));
+	assertThat(timesheet.getHoursFor(SERIAL_NUMBER),
+		is(LineItemsBuilder.HOURS * 2));
     }
 }

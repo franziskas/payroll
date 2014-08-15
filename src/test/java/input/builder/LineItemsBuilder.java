@@ -8,6 +8,11 @@ public abstract class LineItemsBuilder {
 
     protected String seperator;
     protected Object[] values;
+    public static final int HOURS = 8;
+    public static final String OTHER_FIRST_NAME = "first2";
+    public static final String OTHER_LAST_NAME = "last2";
+    public static final String LAST_NAME = "last";
+    public static final String FIRST_NAME = "first";
 
     protected LineItemsBuilder(String seperator, Object... values) {
 	this.seperator = seperator;

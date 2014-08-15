@@ -6,20 +6,13 @@ import static java.util.Collections.emptyList;
 import java.util.List;
 
 import util.ValueObject;
-import domain.resources.PayrollResource;
 
 public class LineItems extends ValueObject {
     public static final String INPUT_SEPERATOR = ",";
-    public static final String OUTPUT_SEPERATOR = " | ";
-
     private List<String> items;
 
     public LineItems(String line) {
 	items = readItems(line);
-    }
-
-    public LineItems(PayrollResource resource) {
-	items = resource.getItemsAsList();
     }
 
     private List<String> readItems(String line) {
@@ -42,12 +35,4 @@ public class LineItems extends ValueObject {
 	return items.get(index);
     }
 
-    public String getOutput() {
-	String itemsAsString = "";
-	for (String item : items) {
-	    itemsAsString += item;
-	    itemsAsString += OUTPUT_SEPERATOR;
-	}
-	return itemsAsString.substring(0, itemsAsString.length() - 3);
-    }
 }

@@ -1,9 +1,9 @@
 package application;
 
-import static input.builder.LineItemsForResourceBuilder.FIRST_NAME;
-import static input.builder.LineItemsForResourceBuilder.FIRST_NAME2;
-import static input.builder.LineItemsForResourceBuilder.LAST_NAME;
-import static input.builder.LineItemsForResourceBuilder.LAST_NAME2;
+import static input.builder.LineItemsBuilder.FIRST_NAME;
+import static input.builder.LineItemsBuilder.LAST_NAME;
+import static input.builder.LineItemsBuilder.OTHER_FIRST_NAME;
+import static input.builder.LineItemsBuilder.OTHER_LAST_NAME;
 import static java.text.MessageFormat.format;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
@@ -17,7 +17,9 @@ import static output.PayrollOutputFile.FILENAME_TEMPLATE;
 import input.InputFile;
 import input.InputLines;
 import input.LineItems;
+import input.builder.LineItemsForOutputBuilder;
 import input.builder.LineItemsForResourceBuilder;
+import input.builder.LineItemsForWorkingHoursBuilder;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,37 +33,44 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import domain.hours.HoursFile;
+import domain.hours.WorkingHours;
 import domain.resources.PayrollResource;
 import domain.resources.ResourcesFile;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PayrollFilesWorkerIntegrationTest {
-
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 
     private static final String EXPECTED_FILENAME = format(FILENAME_TEMPLATE,
 	    LAST_NAME, FIRST_NAME);
     private static final String EXPECTED_FILENAME2 = format(FILENAME_TEMPLATE,
-	    LAST_NAME2, FIRST_NAME2);
+	    OTHER_LAST_NAME, OTHER_FIRST_NAME);
 
-    private static final LineItems EXPECTED_FILE_CONTENT = new LineItemsForResourceBuilder()
-	    .asOutput().create();
-    private static final LineItems EXPECTED_FILE_CONTENT2 = new LineItemsForResourceBuilder()
-	    .withOtherEmployee().asOutput().create();
+    private static final LineItems EXPECTED_FILE_CONTENT = new LineItemsForOutputBuilder()
+	    .create();
+    private static final LineItems EXPECTED_FILE_CONTENT2 = new LineItemsForOutputBuilder()
+	    .withOtherEmployee().create();
 
     private static final PayrollResource FIRST_RESOURCE = new PayrollResource(
 	    new LineItemsForResourceBuilder().create());
     private static final PayrollResource SECOND_RESOURCE = new PayrollResource(
 	    new LineItemsForResourceBuilder().withOtherEmployee().create());
     private static final PayrollResource MANAGER_RESOURCE = new PayrollResource(
+	    new LineItemsForResourceBuilder().withOtherValues().create());
 
-    new LineItemsForResourceBuilder().withOtherValues().create());
+    private static final WorkingHours WORKING_HOURS = new WorkingHours(
+	    new LineItemsForWorkingHoursBuilder().create());
+    private static final WorkingHours OTHER_WORKING_HOURS = new WorkingHours(
+	    new LineItemsForWorkingHoursBuilder().withOtherValues().create());
 
     @Mock
     private InputFile workerMock;
     @Mock
     private ResourcesFile resourcesMock;
+    @Mock
+    private HoursFile hoursMock;
 
     private File tempFolder;
 
@@ -110,6 +119,11 @@ public class PayrollFilesWorkerIntegrationTest {
 
 	worker.setResourceFile(resourcesMock);
 	when(resourcesMock.createResources()).thenReturn(resources);
+
+	worker.setHoursFile(hoursMock);
+
+	when(hoursMock.createWorkingHours()).thenReturn(
+		asList(WORKING_HOURS, OTHER_WORKING_HOURS));
 
 	return worker;
     }

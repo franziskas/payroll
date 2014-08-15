@@ -4,11 +4,11 @@ import static input.builder.LineItemsBuilder.SERIAL_NUMBER;
 import static input.builder.LineItemsForWorkingHoursBuilder.DATE;
 import static input.builder.LineItemsForWorkingHoursBuilder.OTHER_DATE;
 import static input.builder.LineItemsForWorkingHoursBuilder.TIMESTAMP_TOO_SHORT;
-import static input.builder.LineItemsForWorkingHoursBuilder.HOURS;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.rules.ExpectedException.none;
 import input.LineItems;
+import input.builder.LineItemsBuilder;
 import input.builder.LineItemsForWorkingHoursBuilder;
 
 import org.junit.Rule;
@@ -61,7 +61,7 @@ public class WorkingHoursTest {
 	WorkingHours hours = new WorkingHours(LINE_ITEMS_WITH_VALUES);
 
 	assertThat(hours.getSerialNumber(), is(SERIAL_NUMBER));
-	assertThat(hours.getHours(), is(HOURS));
+	assertThat(hours.getHours(), is(LineItemsBuilder.HOURS));
     }
 
 }

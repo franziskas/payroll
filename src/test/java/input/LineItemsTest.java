@@ -1,22 +1,15 @@
 package input;
 
 import static input.LineItems.INPUT_SEPERATOR;
-import static input.builder.LineItemsForResourceBuilder.EMPLOYEE_TYPE;
-import static input.builder.LineItemsForResourceBuilder.FIRST_NAME;
-import static input.builder.LineItemsForResourceBuilder.LAST_NAME;
-import static input.builder.LineItemsForResourceBuilder.SERIAL_NUMBER;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.junit.Assert.assertThat;
-import input.builder.LineItemsForResourceBuilder;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import domain.resources.PayrollResource;
 
 public class LineItemsTest {
     private static final String OUTPUT_SEPERATOR = " | ";
@@ -78,26 +71,4 @@ public class LineItemsTest {
 	items.validate(1);
     }
 
-    @Test
-    public void givenAResourceLineItemsCanProvideTheContentsAsStrings() {
-	LineItems items = new LineItems(new PayrollResource(
-		new LineItemsForResourceBuilder().create()));
-
-	assertThat(items.getValue(0), is(Long.toString(SERIAL_NUMBER)));
-	assertThat(items.getValue(1), is(LAST_NAME));
-	assertThat(items.getValue(2), is(FIRST_NAME));
-	assertThat(items.getValue(3), is(EMPLOYEE_TYPE));
-    }
-
-    @Test
-    public void givenAResourceLineItemsCanProvideTheContentsAsOneOutputString() {
-	LineItems items = new LineItems(new PayrollResource(
-		new LineItemsForResourceBuilder().create()));
-
-	String expectedOutput = SERIAL_NUMBER + OUTPUT_SEPERATOR + LAST_NAME
-		+ OUTPUT_SEPERATOR + FIRST_NAME + OUTPUT_SEPERATOR
-		+ EMPLOYEE_TYPE;
-
-	assertThat(expectedOutput, is(items.getOutput()));
-    }
 }
