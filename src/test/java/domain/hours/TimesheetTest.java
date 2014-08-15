@@ -3,6 +3,8 @@ package domain.hours;
 import static input.builder.LineItemsBuilder.OTHER_SERIAL_NUMBER;
 import static input.builder.LineItemsBuilder.REGULAR_HOURS;
 import static input.builder.LineItemsBuilder.SERIAL_NUMBER;
+import static input.builder.LineItemsForOutputBuilder.OVERTIME_LIMIT;
+import static input.builder.LineItemsForOutputBuilder.OVERTIME_OUTPUT;
 import static input.builder.LineItemsForOutputBuilder.STANDARD_OUTPUT;
 import static input.builder.LineItemsForWorkingHoursBuilder.OVERTIME;
 import static java.util.Arrays.asList;
@@ -57,13 +59,19 @@ public class TimesheetTest {
 	Timesheet timesheet = new Timesheet(asList(WORKING_HOURS_OVERTIME));
 
 	assertThat(timesheet.getRegularHoursFor(SERIAL_NUMBER),
-		is(REGULAR_HOURS));
+		is(OVERTIME_LIMIT));
 	assertThat(timesheet.getOvertimeHoursFor(SERIAL_NUMBER), is(OVERTIME));
     }
 
     @Test
-    public void givenWorkingHoursItPrintsThemToOutputString() {
+    public void givenWorkingHoursWithNoOvertimeItPrintsZeroOvertimeToOutputString() {
 	Timesheet timesheet = new Timesheet(asList(WORKING_HOURS));
 	assertThat(timesheet.getOutput(SERIAL_NUMBER), is(STANDARD_OUTPUT));
+    }
+
+    @Test
+    public void givenWorkingHoursWithOvertimeItPrintsThemToOutputString() {
+	Timesheet timesheet = new Timesheet(asList(WORKING_HOURS_OVERTIME));
+	assertThat(timesheet.getOutput(SERIAL_NUMBER), is(OVERTIME_OUTPUT));
     }
 }

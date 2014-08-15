@@ -1,6 +1,7 @@
 package input.builder;
 
 import static input.LineItems.INPUT_SEPERATOR;
+import static input.builder.LineItemsForOutputBuilder.OVERTIME_LIMIT;
 
 public class LineItemsForWorkingHoursBuilder extends LineItemsBuilder {
     public static final String DATE = "20111101";
@@ -9,7 +10,7 @@ public class LineItemsForWorkingHoursBuilder extends LineItemsBuilder {
     private static final int HOUR_START = 10;
     private static final int HOUR_END = HOUR_START + REGULAR_HOURS;
     public static final int OVERTIME = 2;
-    private static final int HOUR_END_OVERTIME = HOUR_START + REGULAR_HOURS
+    private static final int HOUR_END_OVERTIME = HOUR_START + OVERTIME_LIMIT
 	    + OVERTIME;
 
     private static final String MINUTES = "00";
