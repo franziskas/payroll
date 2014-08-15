@@ -19,6 +19,8 @@ import org.junit.rules.ExpectedException;
 import domain.Resource;
 
 public class LineItemsTest {
+    private static final String OUTPUT_SEPERATOR = " | ";
+
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
@@ -82,8 +84,8 @@ public class LineItemsTest {
 		new LineItemsBuilder().create()));
 
 	assertThat(items.getValue(0), is(Long.toString(SERIAL_NUMBER)));
-	assertThat(items.getValue(1), is(FIRST_NAME));
-	assertThat(items.getValue(2), is(LAST_NAME));
+	assertThat(items.getValue(1), is(LAST_NAME));
+	assertThat(items.getValue(2), is(FIRST_NAME));
 	assertThat(items.getValue(3), is(EMPLOYEE_TYPE));
     }
 
@@ -92,8 +94,9 @@ public class LineItemsTest {
 	LineItems items = new LineItems(new Resource(
 		new LineItemsBuilder().create()));
 
-	String expectedOutput = SERIAL_NUMBER + " | " + FIRST_NAME + " | "
-		+ LAST_NAME + " | " + EMPLOYEE_TYPE;
+	String expectedOutput = SERIAL_NUMBER + OUTPUT_SEPERATOR + LAST_NAME
+		+ OUTPUT_SEPERATOR + FIRST_NAME + OUTPUT_SEPERATOR
+		+ EMPLOYEE_TYPE;
 
 	assertThat(expectedOutput, is(items.getOutput()));
     }

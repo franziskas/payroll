@@ -1,6 +1,7 @@
 package input.builder;
 
 import static input.LineItems.INPUT_SEPERATOR;
+import static input.LineItems.OUTPUT_SEPERATOR;
 import input.LineItems;
 
 public class LineItemsBuilder {
@@ -22,7 +23,8 @@ public class LineItemsBuilder {
     }
 
     public LineItemsBuilder() {
-	this(INPUT_SEPERATOR, SERIAL_NUMBER, FIRST_NAME, LAST_NAME, EMPLOYEE_TYPE);
+	this(INPUT_SEPERATOR, SERIAL_NUMBER, FIRST_NAME, LAST_NAME,
+		EMPLOYEE_TYPE);
     }
 
     public LineItemsBuilder withSeperator(String seperator) {
@@ -48,6 +50,20 @@ public class LineItemsBuilder {
 
     private void setValues(Object... values) {
 	this.values = values;
+    }
+
+    public LineItemsBuilder asOutput() {
+	withSeperator(OUTPUT_SEPERATOR);
+	switchFirstAndLastName();
+	return this;
+    }
+
+    private void switchFirstAndLastName() {
+	Object firstName = values[1];
+	Object lastName = values[2];
+
+	values[2] = firstName;
+	values[1] = lastName;
     }
 
 }

@@ -1,8 +1,8 @@
 package domain;
 
+import static java.util.Arrays.asList;
 import input.LineItems;
 
-import java.util.Arrays;
 import java.util.List;
 
 import util.ValueObject;
@@ -40,7 +40,7 @@ public class Resource extends ValueObject {
     }
 
     public List<String> getItemsAsList() {
-	return Arrays.asList(Long.toString(serialNumber), firstName, lastName,
+	return asList(Long.toString(serialNumber), lastName, firstName,
 		employeeType);
     }
 }

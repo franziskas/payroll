@@ -1,6 +1,5 @@
 package application;
 
-import static input.LineItems.OUTPUT_SEPERATOR;
 import static input.builder.LineItemsBuilder.FIRST_NAME;
 import static input.builder.LineItemsBuilder.FIRST_NAME2;
 import static input.builder.LineItemsBuilder.LAST_NAME;
@@ -37,6 +36,7 @@ import domain.ResourcesFile;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PayrollFilesWorkerIntegrationTest {
+
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 
@@ -44,10 +44,11 @@ public class PayrollFilesWorkerIntegrationTest {
 	    LAST_NAME, FIRST_NAME);
     private static final String EXPECTED_FILENAME2 = format(FILENAME_TEMPLATE,
 	    LAST_NAME2, FIRST_NAME2);
+
     private static final LineItems EXPECTED_FILE_CONTENT = new LineItemsBuilder()
-	    .withSeperator(OUTPUT_SEPERATOR).create();
+	    .asOutput().create();
     private static final LineItems EXPECTED_FILE_CONTENT2 = new LineItemsBuilder()
-	    .withSeperator(OUTPUT_SEPERATOR).withOtherValues().create();
+	    .withOtherValues().asOutput().create();
 
     private static final Resource FIRST_RESOURCE = new Resource(
 	    new LineItemsBuilder().create());

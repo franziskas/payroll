@@ -1,12 +1,12 @@
 package domain;
 
+import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.rules.ExpectedException.none;
 import input.LineItems;
 import input.builder.LineItemsBuilder;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Rule;
@@ -46,9 +46,9 @@ public class ResourceTest {
     @Test
     public void givenLineItemsItReturnsThemAsAListOfStrings() {
 	Resource resource = new Resource(LINE_ITEMS_WITH_VALUES);
-	List<String> expectedValues = Arrays.asList(
-		Long.toString(SERIAL_NUMBER), FIRST_NAME, LAST_NAME,
-		EMPLOYEE_TYPE);
+
+	List<String> expectedValues = asList(Long.toString(SERIAL_NUMBER),
+		LAST_NAME, FIRST_NAME, EMPLOYEE_TYPE);
 
 	assertThat(resource.getItemsAsList(), is(expectedValues));
     }
