@@ -14,7 +14,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-public class HoursFileTest {
+public class HoursFileIntegrationTest {
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 
@@ -24,7 +24,7 @@ public class HoursFileTest {
 	    new LineItemsForWorkingHoursBuilder().withOtherValues().create());
 
     @Test
-    public void givenADirectoryNameWithEmptyResourceFileItReturnsEmptyResourceList()
+    public void givenADirectoryNameWithEmptyFileItReturnsEmptyList()
 	    throws IOException {
 	folder.newFile("badges.txt");
 
@@ -39,7 +39,7 @@ public class HoursFileTest {
     }
 
     @Test
-    public void givenADirectoryNameWithResourceFileHavingTwoLinesItReturnsResourcesReadFromFile() {
+    public void givenADirectoryNameWithFileHavingTwoLinesItReturnsHoursReadFromFile() {
 	List<WorkingHours> resources = new HoursFile(TEST_FILES_FOLDER)
 		.createWorkingHours();
 
