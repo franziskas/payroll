@@ -31,7 +31,7 @@ import domain.Resource;
 import domain.ResourcesFile;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PayrollFilesWorkerTest {
+public class PayrollFilesWorkerIntegrationTest {
     private static final byte[] IRRELEVANT_IMPUT = "2014 11 ".getBytes();
     private static final String EXPECTED_FILENAME = format("{0}-{1}.txt",
 	    LAST_NAME, FIRST_NAME);

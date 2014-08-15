@@ -19,7 +19,7 @@ import org.junit.rules.TemporaryFolder;
 
 import domain.Resource;
 
-public class PayrollFileTest {
+public class PayrollFileIntegrationTest {
 
     private static final LineItems LINE_ITEMS_WITH_VALUES = new LineItemsBuilder()
 	    .create();
