@@ -31,8 +31,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import domain.Resource;
-import domain.ResourcesFile;
+import domain.resources.PayrollResource;
+import domain.resources.ResourcesFile;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PayrollFilesWorkerIntegrationTest {
@@ -50,11 +50,11 @@ public class PayrollFilesWorkerIntegrationTest {
     private static final LineItems EXPECTED_FILE_CONTENT2 = new LineItemsBuilder()
 	    .withOtherEmployee().asOutput().create();
 
-    private static final Resource FIRST_RESOURCE = new Resource(
+    private static final PayrollResource FIRST_RESOURCE = new PayrollResource(
 	    new LineItemsBuilder().create());
-    private static final Resource SECOND_RESOURCE = new Resource(
+    private static final PayrollResource SECOND_RESOURCE = new PayrollResource(
 	    new LineItemsBuilder().withOtherEmployee().create());
-    private static final Resource MANAGER_RESOURCE = new Resource(
+    private static final PayrollResource MANAGER_RESOURCE = new PayrollResource(
 
     new LineItemsBuilder().withOtherValues().create());
 
@@ -104,7 +104,7 @@ public class PayrollFilesWorkerIntegrationTest {
     }
 
     private PayrollFilesWorker setUpWorker(File tempFolder,
-	    List<Resource> resources) {
+	    List<PayrollResource> resources) {
 	PayrollFilesWorker worker = new PayrollFilesWorker();
 	worker.setDirectory(tempFolder.getAbsolutePath() + "\\");
 

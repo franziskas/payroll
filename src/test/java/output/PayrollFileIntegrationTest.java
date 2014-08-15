@@ -17,7 +17,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import domain.Resource;
+import domain.resources.PayrollResource;
 
 public class PayrollFileIntegrationTest {
 
@@ -33,7 +33,7 @@ public class PayrollFileIntegrationTest {
     @Test
     public void givenAResourceContentsAreWrittenToFile() throws IOException {
 	File destinationFolder = folder.newFolder("test");
-	Resource resource = new Resource(LINE_ITEMS_WITH_VALUES);
+	PayrollResource resource = new PayrollResource(LINE_ITEMS_WITH_VALUES);
 
 	PayrollFile payrollFile = new PayrollFile(resource);
 	payrollFile.writeToFolder(destinationFolder.getAbsolutePath());

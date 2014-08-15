@@ -3,8 +3,8 @@ package application;
 import java.util.List;
 
 import output.PayrollFile;
-import domain.Resource;
-import domain.ResourcesFile;
+import domain.resources.PayrollResource;
+import domain.resources.ResourcesFile;
 
 public class PayrollFilesWorker implements PayrollWorker {
 
@@ -13,8 +13,8 @@ public class PayrollFilesWorker implements PayrollWorker {
 
     @Override
     public void createPayroll() {
-	List<Resource> resources = resourcesFile.createResources();
-	for (Resource resource : resources) {
+	List<PayrollResource> resources = resourcesFile.createResources();
+	for (PayrollResource resource : resources) {
 	    if (resource.getEmployeeType().equals("Employee"))
 		new PayrollFile(resource).writeToFolder(directory);
 	}

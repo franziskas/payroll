@@ -1,4 +1,4 @@
-package domain;
+package domain.resources;
 
 import static input.builder.LineItemsBuilder.EMPLOYEE_TYPE;
 import static input.builder.LineItemsBuilder.FIRST_NAME;
@@ -17,7 +17,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class ResourceTest {
+public class PayrollResourceTest {
     private static final LineItems LINE_ITEMS_WITH_VALUES = new LineItemsBuilder()
 	    .create();
     private static final LineItems EMPTY_LINE_ITEMS = new LineItems("");
@@ -30,12 +30,12 @@ public class ResourceTest {
 	expectedException.expectMessage("Input does not have 4 values: "
 		+ EMPTY_LINE_ITEMS.getValues().toString());
 
-	new Resource(EMPTY_LINE_ITEMS);
+	new PayrollResource(EMPTY_LINE_ITEMS);
     }
 
     @Test
     public void givenCorrectNumberOfLineItemsItAssignsThoseToResourceFields() {
-	Resource resource = new Resource(LINE_ITEMS_WITH_VALUES);
+	PayrollResource resource = new PayrollResource(LINE_ITEMS_WITH_VALUES);
 
 	assertThat(resource.getSerialNumber(), is(SERIAL_NUMBER));
 	assertThat(resource.getFirstName(), is(FIRST_NAME));
@@ -45,7 +45,7 @@ public class ResourceTest {
 
     @Test
     public void givenLineItemsItReturnsThemAsAListOfStrings() {
-	Resource resource = new Resource(LINE_ITEMS_WITH_VALUES);
+	PayrollResource resource = new PayrollResource(LINE_ITEMS_WITH_VALUES);
 
 	List<String> expectedValues = asList(Long.toString(SERIAL_NUMBER),
 		LAST_NAME, FIRST_NAME, EMPLOYEE_TYPE);

@@ -1,4 +1,4 @@
-package domain;
+package domain.resources;
 
 import static input.builder.TestFiles.TEST_FILES_FOLDER;
 import static org.hamcrest.CoreMatchers.hasItems;
@@ -18,9 +18,9 @@ public class ResourcesFileTest {
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 
-    private static final Resource SECOND_RESOURCE = new Resource(
+    private static final PayrollResource SECOND_RESOURCE = new PayrollResource(
 	    new LineItemsBuilder().withOtherValues().create());
-    private static final Resource FIRST_RESOURCE = new Resource(
+    private static final PayrollResource FIRST_RESOURCE = new PayrollResource(
 	    new LineItemsBuilder().create());
 
     @Test
@@ -28,7 +28,7 @@ public class ResourcesFileTest {
 	    throws IOException {
 	folder.newFile("resources.txt");
 
-	List<Resource> resources = new ResourcesFile(getTempFolderPath())
+	List<PayrollResource> resources = new ResourcesFile(getTempFolderPath())
 		.createResources();
 
 	assertThat(resources, is(empty()));
@@ -40,7 +40,7 @@ public class ResourcesFileTest {
 
     @Test
     public void givenADirectoryNameWithResourceFileHavingTwoLinesItReturnsResourcesReadFromFile() {
-	List<Resource> resources = new ResourcesFile(TEST_FILES_FOLDER)
+	List<PayrollResource> resources = new ResourcesFile(TEST_FILES_FOLDER)
 		.createResources();
 
 	assertThat(resources, hasItems(FIRST_RESOURCE, SECOND_RESOURCE));

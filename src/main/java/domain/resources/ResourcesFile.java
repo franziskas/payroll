@@ -1,4 +1,4 @@
-package domain;
+package domain.resources;
 
 import input.InputFile;
 import input.InputLines;
@@ -16,17 +16,17 @@ public class ResourcesFile {
 	this.directory = directory;
     }
 
-    public List<Resource> createResources() {
+    public List<PayrollResource> createResources() {
 	InputLines inputLines = new InputLines(new InputFile(directory
 		+ RESOURCE_FILENAME));
 
 	return readResources(inputLines);
     }
 
-    private List<Resource> readResources(InputLines inputLines) {
-	List<Resource> resources = new ArrayList<>();
+    private List<PayrollResource> readResources(InputLines inputLines) {
+	List<PayrollResource> resources = new ArrayList<>();
 	for (LineItems items : inputLines.getLines()) {
-	    resources.add(new Resource(items));
+	    resources.add(new PayrollResource(items));
 	}
 	return resources;
     }

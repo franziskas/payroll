@@ -6,7 +6,7 @@ import static java.util.Collections.emptyList;
 import java.util.List;
 
 import util.ValueObject;
-import domain.Resource;
+import domain.resources.PayrollResource;
 
 public class LineItems extends ValueObject {
     public static final String INPUT_SEPERATOR = ",";
@@ -18,7 +18,7 @@ public class LineItems extends ValueObject {
 	items = readItems(line);
     }
 
-    public LineItems(Resource resource) {
+    public LineItems(PayrollResource resource) {
 	items = resource.getItemsAsList();
     }
 

@@ -9,15 +9,15 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import domain.Resource;
+import domain.resources.PayrollResource;
 
 public class PayrollFile {
 
     public static final String FILENAME_TEMPLATE = "{0}-{1}.txt";
 
-    private Resource resource;
+    private PayrollResource resource;
 
-    public PayrollFile(Resource resource) {
+    public PayrollFile(PayrollResource resource) {
 	this.resource = resource;
     }
 

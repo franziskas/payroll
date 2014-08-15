@@ -16,7 +16,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import domain.Resource;
+import domain.resources.PayrollResource;
 
 public class LineItemsTest {
     private static final String OUTPUT_SEPERATOR = " | ";
@@ -80,7 +80,7 @@ public class LineItemsTest {
 
     @Test
     public void givenAResourceLineItemsCanProvideTheContentsAsStrings() {
-	LineItems items = new LineItems(new Resource(
+	LineItems items = new LineItems(new PayrollResource(
 		new LineItemsBuilder().create()));
 
 	assertThat(items.getValue(0), is(Long.toString(SERIAL_NUMBER)));
@@ -91,7 +91,7 @@ public class LineItemsTest {
 
     @Test
     public void givenAResourceLineItemsCanProvideTheContentsAsOneOutputString() {
-	LineItems items = new LineItems(new Resource(
+	LineItems items = new LineItems(new PayrollResource(
 		new LineItemsBuilder().create()));
 
 	String expectedOutput = SERIAL_NUMBER + OUTPUT_SEPERATOR + LAST_NAME
