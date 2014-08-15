@@ -9,7 +9,7 @@ public class LineItemsForOutputBuilder extends LineItemsBuilder {
     private static final String CURRENCY = " Euro";
     private static final String HOURLY_WAGE = "10" + CURRENCY;
     public static final String STANDARD_OUTPUT = format(PAYROLL_TEMPLATE,
-	    HOURS, HOURLY_WAGE, getTotalStandardPay(HOURS));
+	    REGULAR_HOURS, HOURLY_WAGE, getTotalStandardPay(REGULAR_HOURS));
 
     protected LineItemsForOutputBuilder(String seperator, Object[] values) {
 	super(seperator, values);

@@ -7,14 +7,27 @@ import util.ValueObject;
 
 public class WorkingHours extends ValueObject {
 
+    private static final int OVERTIME_START = 8;
     private long serialNumber;
-    private int hours;
+    private int regularHours;
+    private int overtimeHours = 0;
 
     public WorkingHours(LineItems lineItems) {
 	lineItems.validate(3);
 
 	serialNumber = Long.parseLong(lineItems.getValue(0));
-	this.hours = validateAndCalculateHours(lineItems);
+	int hoursWorked = validateAndCalculateHours(lineItems);
+
+	setHours(hoursWorked);
+    }
+
+    private void setHours(int hoursWorked) {
+	regularHours = hoursWorked;
+
+	if (hoursWorked > OVERTIME_START) {
+	    regularHours = OVERTIME_START;
+	    overtimeHours = hoursWorked - OVERTIME_START;
+	}
     }
 
     private int validateAndCalculateHours(LineItems lineItems) {
@@ -27,7 +40,7 @@ public class WorkingHours extends ValueObject {
     }
 
     private int getHoursOf(String timestamp) {
-	return parseInt(timestamp.substring(9, 10));
+	return parseInt(timestamp.substring(8, 10));
     }
 
     private void validateTimestamps(String startTimestamp, String endTimestamp) {
@@ -59,8 +72,12 @@ public class WorkingHours extends ValueObject {
 	return serialNumber;
     }
 
-    public int getHours() {
-	return hours;
+    public int getRegularHours() {
+	return regularHours;
+    }
+
+    public int getOvertimeHours() {
+	return overtimeHours;
     }
 
 }
