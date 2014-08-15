@@ -5,7 +5,6 @@ import java.util.List;
 import output.PayrollOutputFile;
 import domain.hours.HoursFile;
 import domain.hours.Timesheet;
-import domain.hours.WorkingHours;
 import domain.resources.PayrollResource;
 import domain.resources.ResourcesFile;
 

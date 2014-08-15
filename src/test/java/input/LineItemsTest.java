@@ -12,8 +12,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 public class LineItemsTest {
-    private static final String OUTPUT_SEPERATOR = " | ";
-
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
