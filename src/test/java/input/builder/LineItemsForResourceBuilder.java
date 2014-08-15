@@ -7,7 +7,6 @@ public class LineItemsForResourceBuilder extends LineItemsBuilder {
     public static final String FIRST_NAME = "first";
     public static final String LAST_NAME = "last";
     public static final String EMPLOYEE_TYPE = "Employee";
-    private static final long SERIAL_NUMBER2 = 1234L;
     public static final String FIRST_NAME2 = "first2";
     public static final String LAST_NAME2 = "last2";
     private static final String MANAGER_TYPE = "Manager";
@@ -18,12 +17,13 @@ public class LineItemsForResourceBuilder extends LineItemsBuilder {
     }
 
     public LineItemsForResourceBuilder withOtherValues() {
-	setValues(SERIAL_NUMBER2, FIRST_NAME2, LAST_NAME2, MANAGER_TYPE);
+	setValues(LineItemsBuilder.OTHER_SERIAL_NUMBER, FIRST_NAME2,
+		LAST_NAME2, MANAGER_TYPE);
 	return this;
     }
 
     public LineItemsForResourceBuilder withOtherEmployee() {
-	setValues(SERIAL_NUMBER2, FIRST_NAME2, LAST_NAME2, EMPLOYEE_TYPE);
+	setValues(OTHER_SERIAL_NUMBER, FIRST_NAME2, LAST_NAME2, EMPLOYEE_TYPE);
 	return this;
     }
 

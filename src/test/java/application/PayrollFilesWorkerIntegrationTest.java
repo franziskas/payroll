@@ -13,7 +13,7 @@ import static org.hamcrest.collection.IsArrayWithSize.emptyArray;
 import static org.hamcrest.core.IsCollectionContaining.hasItems;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
-import static output.PayrollFile.FILENAME_TEMPLATE;
+import static output.PayrollOutputFile.FILENAME_TEMPLATE;
 import input.InputFile;
 import input.InputLines;
 import input.LineItems;

@@ -3,8 +3,9 @@ package domain.hours;
 import static java.lang.Integer.parseInt;
 import static java.lang.Math.abs;
 import input.LineItems;
+import util.ValueObject;
 
-public class WorkingHours {
+public class WorkingHours extends ValueObject {
 
     private long serialNumber;
     private int hours;

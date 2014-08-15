@@ -2,7 +2,7 @@ package application;
 
 import java.util.List;
 
-import output.PayrollFile;
+import output.PayrollOutputFile;
 import domain.resources.PayrollResource;
 import domain.resources.ResourcesFile;
 
@@ -16,7 +16,7 @@ public class PayrollFilesWorker implements PayrollWorker {
 	List<PayrollResource> resources = resourcesFile.createResources();
 	for (PayrollResource resource : resources) {
 	    if (resource.getEmployeeType().equals("Employee"))
-		new PayrollFile(resource).writeToFolder(directory);
+		new PayrollOutputFile(resource).writeToFolder(directory);
 	}
     }
 

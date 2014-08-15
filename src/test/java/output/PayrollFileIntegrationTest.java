@@ -35,7 +35,7 @@ public class PayrollFileIntegrationTest {
 	File destinationFolder = folder.newFolder("test");
 	PayrollResource resource = new PayrollResource(LINE_ITEMS_WITH_VALUES);
 
-	PayrollFile payrollFile = new PayrollFile(resource);
+	PayrollOutputFile payrollFile = new PayrollOutputFile(resource);
 	payrollFile.writeToFolder(destinationFolder.getAbsolutePath());
 
 	String desiredFilepath = destinationFolder.getPath()

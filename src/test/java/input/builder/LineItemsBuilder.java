@@ -7,6 +7,7 @@ public abstract class LineItemsBuilder {
     public static final long SERIAL_NUMBER = 123L;
     protected String seperator;
     protected Object[] values;
+    protected static final long OTHER_SERIAL_NUMBER = 1234L;
 
     protected LineItemsBuilder(String seperator, Object... values) {
 	this.seperator = seperator;

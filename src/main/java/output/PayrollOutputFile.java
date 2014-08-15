@@ -11,13 +11,13 @@ import java.nio.file.Path;
 
 import domain.resources.PayrollResource;
 
-public class PayrollFile {
+public class PayrollOutputFile {
 
     public static final String FILENAME_TEMPLATE = "{0}-{1}.txt";
 
     private PayrollResource resource;
 
-    public PayrollFile(PayrollResource resource) {
+    public PayrollOutputFile(PayrollResource resource) {
 	this.resource = resource;
     }
 
